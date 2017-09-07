@@ -1,6 +1,7 @@
-#!/bin/bash -x
+#!/bin/bash
 
 LIBRARY="/usr/local/lib/flashbang_lib.sh"
+USERLIBRARY="/dummy/foo/bar"
 SCRIPT="$1"
 SCPATH="${HOME}/bin"
 
@@ -53,6 +54,8 @@ echo "#!/bin/bash
 
 if [ -f $USERLIBRARY ]; then
         echo -e "source $USERLIBRARY" >> $SCRIPT
+elif [ $USERLIBRARY == "/dummy/foo/bar" ]; then
+        :
 else
         echo "$USERLIBRARY not found"
         rm $SCRIPT
