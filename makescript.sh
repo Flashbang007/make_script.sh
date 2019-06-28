@@ -42,9 +42,9 @@ while getopts 'hd:l:' opt
  done
 
 
-[ -z $SCRIPT ] && echo "no sctiptname" && exit 1
-[[ $SCRIPT =~ -.* ]] && echo "invalid Argument $SCRIPT. first scriptname, then OPTIONS" && print_help && exit 1
-[ ! -d $SCPATH ] && echo "$SCPATH not existant" && exit 1
+[ -z $SCRIPT ] && echo "no sctiptname" && exit 2
+[[ $SCRIPT =~ ^-.* ]] && echo "invalid Argument $SCRIPT. first scriptname, then OPTIONS" && print_help && exit 3
+[ ! -d $SCPATH ] && echo "$SCPATH not existant" && exit 4
 
 cd $SCPATH
 touch $SCRIPT
@@ -59,7 +59,7 @@ elif [ $USERLIBRARY == "/dummy/foo/bar" ]; then
 else
         echo "$USERLIBRARY not found"
         rm $SCRIPT
-        exit 2
+        exit 5
 fi
 if [ -f $LIBRARY ]; then
         echo -e "source $LIBRARY" >> $SCRIPT
